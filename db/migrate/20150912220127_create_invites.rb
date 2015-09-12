@@ -6,6 +6,7 @@ class CreateInvites < ActiveRecord::Migration
       t.integer :invitee_uuid, index: true
       t.integer :invitee_platform_cd, index: true
       t.references :event, index: true
+      t.timestamps null: false
     end
   end
 end

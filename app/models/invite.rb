@@ -10,4 +10,5 @@ class Invite < ActiveRecord::Base
 
   # Associations
   belongs_to :event
+  belongs_to :user
 end

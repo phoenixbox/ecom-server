@@ -9,6 +9,7 @@ class CreateFacebookProfiles < ActiveRecord::Migration
       t.integer :authentication_id, null: false
       t.string :token, null: false
       t.hstore :raw
+      t.timestamps null: false
     end
     add_index :facebook_profiles, :raw, using: :gin
   end
