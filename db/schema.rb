@@ -11,11 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912222543) do
+ActiveRecord::Schema.define(version: 20150912223037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "line_1"
+    t.string   "line_2"
+    t.string   "line_3"
+    t.string   "city"
+    t.string   "province"
+    t.string   "zipcode"
+    t.decimal  "latitude",            precision: 10, scale: 6
+    t.decimal  "longitude",           precision: 10, scale: 6
+    t.integer  "iso_country_code_cd"
+    t.integer  "type_cd"
+    t.text     "description"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "addresses", ["iso_country_code_cd"], name: "index_addresses_on_iso_country_code_cd", using: :btree
+  add_index "addresses", ["type_cd"], name: "index_addresses_on_type_cd", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid",        null: false

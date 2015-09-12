@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :event_users
   has_many :events, through: :event_users
   has_many :invites
+  has_many :addresses, as: :addressable, dependent: :destroy
 
   def self.from_omniauth(params)
     password = Devise.friendly_token[0,20]
