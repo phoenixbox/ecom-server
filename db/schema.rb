@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912215547) do
+ActiveRecord::Schema.define(version: 20150912220127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(version: 20150912215547) do
   end
 
   add_index "facebook_profiles", ["raw"], name: "index_facebook_profiles_on_raw", using: :gin
+
+  create_table "invites", force: :cascade do |t|
+    t.integer "delivery_cd"
+    t.integer "state_cd"
+    t.integer "invitee_uuid"
+    t.integer "invitee_platform_cd"
+    t.integer "event_id"
+  end
+
+  add_index "invites", ["delivery_cd"], name: "index_invites_on_delivery_cd", using: :btree
+  add_index "invites", ["event_id"], name: "index_invites_on_event_id", using: :btree
+  add_index "invites", ["invitee_platform_cd"], name: "index_invites_on_invitee_platform_cd", using: :btree
+  add_index "invites", ["invitee_uuid"], name: "index_invites_on_invitee_uuid", using: :btree
+  add_index "invites", ["state_cd"], name: "index_invites_on_state_cd", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",       null: false
