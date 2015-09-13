@@ -2,13 +2,6 @@ module V1
   class UsersController < ApplicationController
     skip_before_action :authenticate_user_from_token!, only: [:create]
 
-    # Validations
-    validates :display_name, presence: true, uniqueness: true
-    validates :email, presence: true, uniqueness: true
-
-    # Associations
-    has_many :authentications
-
     # POST /v1/users
     # ${token} string
     # ${profile} oauth profile - ref below
