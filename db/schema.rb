@@ -59,12 +59,15 @@ ActiveRecord::Schema.define(version: 20150912223037) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "title",       null: false
-    t.text     "description"
-    t.integer  "date",        null: false
+    t.string   "occassion",                     null: false
+    t.integer  "invited_count",                 null: false
+    t.integer  "year",                          null: false
+    t.integer  "month",                         null: false
+    t.integer  "day",                           null: false
+    t.boolean  "cancelled",     default: false
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
