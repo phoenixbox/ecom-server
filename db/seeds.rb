@@ -17,3 +17,16 @@ DEFAULT_EVENTS.each do |e, i|
   event.cancelled = e['cancelled']
   event.save
 end
+
+
+DEFAULT_CUSTOMERS ||= YAML.load(File.open("#{Rails.root}/config/constants/default_customers.yml", 'r'))
+DEFAULT_CUSTOMERS.each_with_index do |e, i|
+  puts "Seeding customer number:#{i}"
+  customer = Customer.new
+  customer.first_name = e['first_name']
+  customer.second_name = e['second_name']
+  customer.latitude = e['latitude']
+  customer.longitude = e['longitude']
+  customer.user_id = e['user_id']
+  customer.save
+end

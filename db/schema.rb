@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915034557) do
+ActiveRecord::Schema.define(version: 20150915041355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20150915034557) do
   end
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "first_name",                           null: false
+    t.string   "second_name",                          null: false
+    t.integer  "user_id",                              null: false
+    t.decimal  "latitude",    precision: 10, scale: 6
+    t.decimal  "longitude",   precision: 10, scale: 6
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "event_users", force: :cascade do |t|
     t.integer  "user_id"
