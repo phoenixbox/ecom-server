@@ -5,6 +5,6 @@ module V1
                :year,
                :month,
                :day,
-    # Invited count should be a computed prop
+               :cancelled
   end
 end

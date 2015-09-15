@@ -14,6 +14,6 @@ DEFAULT_EVENTS.each do |e, i|
   event.year = e['year']
   event.month = e['month']
   event.day = e['day']
-  event.cancelled = e['cancelled'] || false
+  event.cancelled = e['cancelled']
   event.save
 end
